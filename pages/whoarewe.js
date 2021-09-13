@@ -4,7 +4,7 @@
 
 
 function WhoAreWe() {
-  return <h1> about us !!!</h1>;
+  return <h1> About us !</h1>;
 }
 
 export default WhoAreWe;
