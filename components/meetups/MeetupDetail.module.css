@@ -1,0 +1,8 @@
+.detail {
+  text-align: center;
+}
+
+/* img 480x480 unsplash, props */
+.detail img {
+  width: 100%;
+}
