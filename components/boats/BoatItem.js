@@ -1,26 +1,31 @@
-import {useRouter, userRouter} from 'next/router'
+import {useRouter } from 'next/router'
 
 import Card from '../ui/Card';
-import classes from './MeetupItem.module.css';
+import classes from './BoatItem.module.css';
 
-function MeetupItem(props) {
+function BoatItem(props) {
   // programmatic navigation
   const router = useRouter()
   // function to navigate
   function showDetailHandler () {
+    console.log(props)
     // router.query
     router.push('/' + props.id)
+    console.log(`in router ${props.id}`)
   }
   return (
     <li className={classes.item}>
       <Card>
-        <div className={classes.image}>
+        <div>
+          name : {props.name}
+        </div>
+        {/* <div className={classes.image}>
           <img src={props.image} alt={props.title} />
         </div>
         <div className={classes.content}>
           <h3>{props.title}</h3>
           <address>{props.address}</address>
-        </div>
+        </div> */}
         <div className={classes.actions}>
           <button onClick={showDetailHandler}>Show Details</button>
         </div>
@@ -29,4 +34,4 @@ function MeetupItem(props) {
   );
 }
 
-export default MeetupItem;
+export default BoatItem;

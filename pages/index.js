@@ -1,6 +1,6 @@
 // import { useEffect, useState } from "react";
 import Layout from "../components/layout/Layout";
-import MeetupList from "../components/meetups/MeetupList";
+import BoatList from "../components/boats/BoatList";
 
 
 const DUMMY_MEETUPS = [
@@ -57,10 +57,34 @@ function HomePage(props) {
 
   return (
     <Layout>
-      <MeetupList meetups={props.meetups} />
+      <BoatList boats={props.data} />
     </Layout>
   );
 }
+
+export async function getStaticProps(context) {
+  const res = await fetch(`http://localhost:8000/boat/boats`);
+
+  const data = await res.json();
+  console.log(` res.json data.data.boats ${data.data.boats}`);
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      data: data.data.boats.map(boat => ({
+        name: boat.name,
+        id: boat._id.toString()
+      })),
+    }, // will be passed to the page component as props
+  };
+}
+
+export default HomePage;
 
 
 
@@ -68,18 +92,18 @@ function HomePage(props) {
 // next look for this function  getStaticProps; to prepare props for this page,
 // next wait for the promise to resolve, not executed on client
 
-export async function getStaticProps() {
-  // fetch data from an API
-  // return object
-  return {
-    props: {
-      meetups: DUMMY_MEETUPS
-    },
-    // if data change regurlaly revalidate property, incremental generation, number: seconds
-    // if resusts coming to the page, page revalidate every 1 sec
-    revalidate: 1
-  };
-}
+// export async function getStaticProps() {
+//   // fetch data from an API
+//   // return object
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS
+//     },
+//     // if data change regurlaly revalidate property, incremental generation, number: seconds
+//     // if resusts coming to the page, page revalidate every 1 sec
+//     revalidate: 1
+//   };
+// }
 
 
 // // difference with getStaticProps : will NOT run on build process, always on server after deployment
@@ -92,5 +116,3 @@ export async function getStaticProps() {
 //     props: DUMMY_MEETUPS
 //   }
 // }
-
-export default HomePage;

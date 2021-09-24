@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 
 import Card from '../ui/Card';
-import classes from './NewMeetupForm.module.css';
+import classes from './NewBoatForm.module.css';
 
-function NewMeetupForm(props) {
+function NewBoatForm(props) {
   const titleInputRef = useRef();
   const imageInputRef = useRef();
   const addressInputRef = useRef();
@@ -17,14 +17,14 @@ function NewMeetupForm(props) {
     const enteredAddress = addressInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
 
-    const meetupData = {
+    const boatData = {
       title: enteredTitle,
       image: enteredImage,
       address: enteredAddress,
       description: enteredDescription,
     };
 
-    props.onAddMeetup(meetupData);
+    props.onAddBoat(boatData);
   }
 
   return (
@@ -59,4 +59,4 @@ function NewMeetupForm(props) {
   );
 }
 
-export default NewMeetupForm;
+export default NewBoatForm;

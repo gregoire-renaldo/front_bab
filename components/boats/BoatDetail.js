@@ -1,7 +1,7 @@
 import { Fragment } from "react";
-import classes from './MeetupDetail.module.css'
+import classes from './BoatDetail.module.css'
 
-function MeetupDetail(props) {
+function BoatDetail(props) {
   return (
     <section className={classes.detail}>
       <img src={props.image} alt={props.title} />
@@ -11,4 +11,4 @@ function MeetupDetail(props) {
   );
 }
 
-export default MeetupDetail;
+export default BoatDetail;
