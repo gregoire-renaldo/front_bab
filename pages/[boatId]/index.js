@@ -21,7 +21,6 @@ console.log("staticpath after before 2");
     paths : paths,
     fallback: false
   }
-
 }
 
 // impossible to use react hooks f: useRouter, to get the id in the url, but no need with context
